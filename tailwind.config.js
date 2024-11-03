@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'banner': "url('./src/assets/banner.jpg')",
+      },
       colors: {
         'prime': '#9538E2',
       },

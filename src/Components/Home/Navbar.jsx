@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const nav =
-        <div className="space-x-12 font-medium text-lg">
-            <Link>Home</Link>
-            <Link>Statistics</Link>
-            <Link>Dashboard</Link>
+        <div className="space-x-12 font-medium text-lg flex flex-col md:flex-row ">
+            <Link to={'/'} >Home</Link>
+            <Link to={'/statistics'}>Statistics</Link>
+            <Link to={'/dashboard'}>Dashboard</Link>
         </div>
     return (
-        <div className="navbar bg-prime px-28 text-white">
+        <div className="navbar bg-prime sm:px-3 xl:px-28 text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
