@@ -1,13 +1,14 @@
 import { FiHeart } from "react-icons/fi"
 import { MdOutlineShoppingCart } from "react-icons/md"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 const Navbar = () => {
     const nav =
         <div className="space-x-12 font-medium text-lg flex flex-col md:flex-row ">
-            <Link to={'/'} >Home</Link>
-            <Link to={'/statistics'}>Statistics</Link>
-            <Link to={'/dashboard'}>Dashboard</Link>
+            <NavLink to={'/'}>Home</NavLink>
+            <NavLink to={'/statistics'}>Statistics</NavLink>
+            <NavLink to={'/dashboard'}>Dashboard</NavLink>
+            <NavLink to={'/unique'}>Unique</NavLink>
         </div>
     return (
         <div className="navbar bg-prime sm:px-3 xl:px-28 text-white">
@@ -29,7 +30,7 @@ const Navbar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">
                         {nav}
 
                     </ul>
@@ -37,7 +38,7 @@ const Navbar = () => {
                 <a className=" text-xl">Gadget Heaven</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 ">
                     {nav}
                 </ul>
             </div>
