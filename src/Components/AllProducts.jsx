@@ -3,6 +3,8 @@ import Gadgets from "./Home/Gadgets"
 import { useEffect, useState } from "react"
 
 
+
+
 const AllProducts = () => {
 
     const datas = useLoaderData()
@@ -19,19 +21,21 @@ const AllProducts = () => {
 
         }
         else {
-            setProduct(datas)
+            setProduct(datas.slice(0, 6))
 
 
         }
     }, [datas, name])
 
 
-
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                 
-            {product.map((data) => <Gadgets data={data} key={data.product_id} />)}
-        </div>
+        <>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                {product.map((data) => <Gadgets data={data} key={data.id} />)}
+            </div>
+
+            <button onClick={() => product.length < 6 ? setProduct(product) : setProduct(datas)} className="btn mt-5 bg-error text-white">View All</button>
+        </>
     )
 }
 

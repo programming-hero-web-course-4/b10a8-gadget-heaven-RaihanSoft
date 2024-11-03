@@ -5,6 +5,7 @@ import Statistics from "../Pages/Statistics";
 import Dashboard from "../Pages/Dashboard";
 import AllProducts from "../Components/AllProducts";
 import Unique from "../Pages/Unique";
+import ProductDetails from "../Pages/ProductDetails";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +30,6 @@ const router = createBrowserRouter([
                 ]
 
 
-
             },
             {
                 path: "/statistics",
@@ -38,10 +38,17 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <Dashboard />
-            }, {
+            },
+            {
                 path: "/unique",
                 element: <Unique />
             },
+            {
+                path: "/details/:id",
+                element: <ProductDetails />,
+                loader: () => fetch('../gadget.json'),
+
+            }
 
 
         ]

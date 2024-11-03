@@ -1,6 +1,9 @@
 const Statistics = () => {
   return (
+
+
     <div>
+
       statistic
     </div>
   )
