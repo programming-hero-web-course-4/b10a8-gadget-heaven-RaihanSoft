@@ -4,13 +4,13 @@ import { Link,} from "react-router-dom"
 const Gadgets = ({ data }) => {
 
 
-    // eslint-disable-next-line no-unused-vars
+
     const { product_image, product_title, price ,id } = data
     return (
         <div className="card bg-base-100  shadow-md border-2">
             <figure className="px-10 pt-10">
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    src={product_image}
                     alt="Shoes"
                     className="rounded-xl" />
             </figure>

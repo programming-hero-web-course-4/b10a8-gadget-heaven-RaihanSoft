@@ -1,9 +1,17 @@
 import { FiHeart } from "react-icons/fi"
 import { MdOutlineShoppingCart } from "react-icons/md"
-import { NavLink, useOutletContext } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import { getStoredReadList, getStoredWishList } from "../Util/Util";
+
 
 const Navbar = () => {
-    const { carts = [], wishlist = [] } = useOutletContext() || {};
+    const { pathname } = useLocation()
+
+
+    const storedList = getStoredReadList();
+    const storedWishList = getStoredWishList();
+
+
     const nav =
         <div className="space-x-12 font-medium text-lg flex flex-col md:flex-row ">
             <NavLink className={({ isActive }) => `${isActive ? 'bg-red-600' : " "}`} to={'/'}>Home</NavLink>
@@ -13,7 +21,7 @@ const Navbar = () => {
         </div>
     return (
         <>
-            <div className="navbar bg-prime sm:px-3 xl:px-28 text-white">
+            <div className={`navbar sm:px-3 xl:px-28 ${pathname === '/' ? "bg-prime text-white" : "bg-white text-black"}`}>
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,11 +55,12 @@ const Navbar = () => {
                 <div className="navbar-end space-x-4">
                     <div className="relative rounded-full border-2 p-2">
                         <MdOutlineShoppingCart size={20} />
-                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{carts.length}</span>
+                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{`${storedList.length}`}</span>
                     </div>
                     <div className="relative rounded-full border-2 p-2">
                         <FiHeart size={20} />
-                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{wishlist.length}</span>
+                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{`${storedWishList.length}`}</span>
+
                     </div>
                 </div>
             </div>

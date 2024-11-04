@@ -7,11 +7,14 @@ import { addToStoredReadList, addToStoredWishList } from "../Components/Util/Uti
 
 
 const ProductDetails = () => {
+
+
+
     const datas = useLoaderData()
     const { id } = useParams()
 
     const [product, setProduct] = useState({})
-    const { product_title, price, description, specification, rating } = product
+    const { product_image, product_title, price, description, specification, rating } = product
     useEffect(() => {
         const singleData = datas.find(data => data.id === parseInt(id))
         setProduct(singleData)
@@ -24,14 +27,14 @@ const ProductDetails = () => {
         addToStoredReadList(id)
 
 
+
     }
 
-    const handleMarkAsWish =(id)=> {
+    const handleMarkAsWish = (id) => {
         addToStoredWishList(id)
 
     }
 
-    //Shop count 
 
 
 
@@ -42,6 +45,7 @@ const ProductDetails = () => {
             <div className="text-center bg-prime text-white py-10 pb-40 mb-10">
                 <h1 className="text-5xl font-bold " >Product Details</h1>
                 <p>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
+
             </div>
 
 
@@ -49,7 +53,7 @@ const ProductDetails = () => {
                 <div className="hero-content flex-col lg:flex-row">
 
                     <img
-                        src='https://images.unsplash.com/photo-1730510733142-979103e3e023?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMnx8fGVufDB8fHx8fA%3D%3D'
+                        src={product_image}
                         className="max-w-lg h-full w-full rounded-lg shadow-2xl  " />
 
                     <div>
@@ -74,7 +78,7 @@ const ProductDetails = () => {
 
                         <div className="flex items-center gap-5">
                             <button onClick={() => handleMarkAsRead(id)} className="btn btn-primary">Add To Card <MdOutlineShoppingCart size={20} /></button>
-                            <button onClick={()=>handleMarkAsWish(id)} className="btn btn-primary">  <FiHeart size={20} /></button>
+                            <button onClick={() => handleMarkAsWish(id)} className="btn btn-primary">  <FiHeart size={20} /></button>
                         </div>
                     </div>
                 </div>

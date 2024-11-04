@@ -2,7 +2,7 @@
   {
     "id": 1,
     "product_title": "Apple iPhone 15 Pro Max",
-    "product_image": "https://example.com/iphone15promax.jpg",
+    "product_image": "https://www.zdnet.com/a/img/resize/7c135e7748ad80aa72743c58c1d067ba1a0fddcf/2023/10/06/4e7663f4-fe43-424e-8fde-64a5612cdfd7/img-1950.jpg?auto=webp&width=1280",
     "category": "iPhone",
     "price": 1299,
     "description": "Experience the ultimate smartphone with the iPhone 15 Pro Max.",
@@ -19,7 +19,7 @@
   {
     "id": 2,
     "product_title": "Samsung Galaxy S23 Ultra",
-    "product_image": "https://example.com/galaxys23ultra.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRYUBSMDJHql4ormT2XkebhgtzDfwxVXuLTw&s",
     "category": "Phones",
     "price": 1199,
     "description": "A powerful smartphone with advanced features and stunning display.",
@@ -35,7 +35,7 @@
   {
     "id": 3,
     "product_title": "Apple MacBook Air M2",
-    "product_image": "https://example.com/macbookairm2.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1xdclQ2hq1gGxlY1bXNL1-KdXDLF30IaBAQ&s",
     "category": "MacBook",
     "price": 1199,
     "description": "Lightweight and powerful laptop with Apple's M2 chip.",
@@ -51,7 +51,7 @@
   {
     "id": 4,
     "product_title": "Apple Watch Series 9",
-    "product_image": "https://example.com/applewatchseries9.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRb2GA8FpTLt_KrfUm77RpYuU7DWLa476tYg&s",
     "category": "Smart Watches",
     "price": 399,
     "description": "Latest Apple Watch with health monitoring and emergency SOS features.",
@@ -68,7 +68,7 @@
   {
     "id": 5,
     "product_title": "Sony Xperia 1 V",
-    "product_image": "https://example.com/xperia1v.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5r7rpKmGAakPPk_f8Hk3fSOTXgLhsSLo7Rw&s",
     "category": "Phones",
     "price": 1099,
     "description": "Sony's premium smartphone with advanced video recording features.",
@@ -85,7 +85,7 @@
   {
     "id": 6,
     "product_title": "Google Pixel 8 Pro",
-    "product_image": "https://example.com/pixel8pro.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqdRGOfnNFBSiW5nEYeY3a-4NL0ZX48-6lSA&s",
     "category": "Phones",
     "price": 999,
     "description": "Google's latest phone with AI-powered features and excellent camera.",
@@ -102,7 +102,7 @@
   {
     "id": 7,
     "product_title": "Dell XPS 13",
-    "product_image": "https://example.com/dellxps13.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe8WUsYPhlM1Dg8l9fAEwYbV9oJtXHGWAhyA&s",
     "category": "Laptops",
     "price": 999,
     "description": "Compact and efficient laptop with InfinityEdge display.",
@@ -118,7 +118,7 @@
   {
     "id": 8,
     "product_title": "Samsung Galaxy Watch 6",
-    "product_image": "https://example.com/galaxywatch6.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkd6xEks0drohOm0KK32_Vbfl1sq-EfPez5w&s",
     "category": "Smart Watches",
     "price": 299,
     "description": "Advanced smartwatch with health tracking and AMOLED display.",
@@ -135,7 +135,7 @@
   {
     "id": 9,
     "product_title": "Anker PowerCore 10000",
-    "product_image": "https://example.com/ankerpowercore10000.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnX5Q93JOXQ0mO08zGJR_MZU8ehG8IPXcYQg&s",
     "category": "Accessories",
     "price": 49,
     "description": "Compact portable charger with high-speed charging capabilities.",
@@ -150,7 +150,7 @@
   {
     "id": 10,
     "product_title": "Apple AirPods Pro 2",
-    "product_image": "https://example.com/airpodspro2.jpg",
+    "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmc8t2sgHQ5zafmzruHEJX0rM21HZS7G0N2Q&s",
     "category": "Accessories",
     "price": 249,
     "description": "Noise-canceling wireless earbuds with spatial audio.",
