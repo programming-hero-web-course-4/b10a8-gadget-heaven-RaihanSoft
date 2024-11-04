@@ -6,7 +6,8 @@ const Dashboard = () => {
   const allProducts = useLoaderData();
   const [carts, setCarts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  
+  const [totalCost, setTotalCost] = useState(0); // New state for total cost
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,6 +17,10 @@ const Dashboard = () => {
       const cartList = allProducts.filter(product => storedCartList.includes(product.id));
       setCarts(cartList);
 
+      // Calculate initial total cost
+      const initialTotalCost = cartList.reduce((acc, product) => acc + product.price, 0);
+      setTotalCost(initialTotalCost);
+
       const storedWishlist = getStoredWishList().map(id => parseInt(id, 10));
       const wishlistItems = allProducts.filter(product => storedWishlist.includes(product.id));
       setWishlist(wishlistItems);
@@ -24,8 +29,17 @@ const Dashboard = () => {
     loadCartAndWishlist();
   }, [allProducts]);
 
+  const handleAddToCart = (product) => {
+    setCarts(prevCarts => [...prevCarts, product]);
+    setTotalCost(prevTotal => prevTotal + product.price); // Update total cost
+  };
+
   const handleRemoveFromCart = (id) => {
     setCarts(prevCarts => prevCarts.filter(item => item.id !== id));
+    const removedProduct = carts.find(item => item.id === id);
+    if (removedProduct) {
+      setTotalCost(prevTotal => prevTotal - removedProduct.price); // Adjust total cost
+    }
     removeFromStoredReadList(id);
   };
 
@@ -59,7 +73,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <Outlet context={{ carts, wishlist, handleRemoveFromCart, handleRemoveFromWishlist }} />
+      <Outlet context={{ carts, wishlist, handleAddToCart, handleRemoveFromCart, handleRemoveFromWishlist, totalCost }} />
     </>
   );
 };

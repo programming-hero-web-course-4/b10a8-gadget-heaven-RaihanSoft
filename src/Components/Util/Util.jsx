@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 export const getStoredReadList = () => {
     const storedListStr = localStorage.getItem('read-list');
- 
+
     try {
         return storedListStr ? JSON.parse(storedListStr) : [];
     } catch (error) {
@@ -18,11 +18,11 @@ export const addToStoredReadList = (id) => {
     if (!storedList.includes(id)) {
         storedList.push(id);
         localStorage.setItem('read-list', JSON.stringify(storedList));
-        toast('This item is added to your read list.');
+        toast.success('This item is added to your Cart list.', { position: "top-center" });
     } else {
-        console.log(`${id} already exists in the read list.`);
+        toast.error(`Already exists in the Cart list!`, { position: "top-center" })
     }
-    // console.log(storedList.length , storedList)
+
 }
 
 // Wishlist Functions (using "wish-list" key)
@@ -41,10 +41,10 @@ export const addToStoredWishList = (id) => {
     if (!storedWishList.includes(id)) {
         storedWishList.push(id);
         localStorage.setItem('wish-list', JSON.stringify(storedWishList));
-        toast('This item is added to your wish list.');
+        toast.success('This item is added to your Wish list.', { position: "top-center" });
         return []
     } else {
-        console.log(`${id} already exists in the wish list.`);
+        toast.error(`Already exists in the Wish list!`, { position: "top-center" })
     }
 }
 
@@ -53,14 +53,14 @@ export const removeFromStoredReadList = (id) => {
     const storedList = getStoredReadList();
     const updatedList = storedList.filter(itemId => itemId !== id);
     localStorage.setItem('read-list', JSON.stringify(updatedList));
-    toast('Item removed from your cart.');
+    toast.warn('Removed from your cartlist.');
 }
 
 export const removeFromStoredWishList = (id) => {
     const storedWishList = getStoredWishList();
     const updatedWishList = storedWishList.filter(itemId => itemId !== id);
     localStorage.setItem('wish-list', JSON.stringify(updatedWishList));
-    toast('Item removed from your wishlist.');
+    toast.warn('Removed from your wishlist.');
 }
 
 

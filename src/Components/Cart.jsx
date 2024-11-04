@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Cart = () => {
-  const { carts, handleRemoveFromCart } = useOutletContext();
+  const { carts, handleRemoveFromCart, totalCost } = useOutletContext();
   const [sortedCarts, setSortedCarts] = useState(carts);
 
   // Sync sortedCarts with carts whenever carts changes
@@ -30,7 +30,7 @@ const Cart = () => {
           <h1 className="text-2xl font-bold">Cart</h1>
         </div>
         <div className="flex items-center gap-6">
-          <p className="text-2xl font-bold">Total cost: <span className="text-xl">999.99</span></p>
+          <p className="text-2xl font-bold">Total cost: <span className="text-xl">${totalCost.toFixed(2)}</span></p>
           <button className="btn" onClick={sortByPriceDescending}>Sort by Price</button>
           <button className="btn">Purchase</button>
         </div>
