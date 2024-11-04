@@ -35,7 +35,9 @@ const Dashboard = () => {
         </div>
       </div>
 
+
       <Outlet context={{ carts, wishlist }} />
+
     </>
   );
 }

@@ -1,8 +1,9 @@
 import { FiHeart } from "react-icons/fi"
 import { MdOutlineShoppingCart } from "react-icons/md"
-import { NavLink } from "react-router-dom"
+import { NavLink, useOutletContext } from "react-router-dom"
 
 const Navbar = () => {
+    const { carts = [], wishlist = [] } = useOutletContext() || {};
     const nav =
         <div className="space-x-12 font-medium text-lg flex flex-col md:flex-row ">
             <NavLink className={({ isActive }) => `${isActive ? 'bg-red-600' : " "}`} to={'/'}>Home</NavLink>
@@ -43,10 +44,15 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <div className="navbar-end space-x-4 ">
-                    <MdOutlineShoppingCart size={20} />
-                    <FiHeart size={20} />
-
+                <div className="navbar-end space-x-4">
+                    <div className="relative rounded-full border-2 p-2">
+                        <MdOutlineShoppingCart size={20} />
+                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{carts.length}</span>
+                    </div>
+                    <div className="relative rounded-full border-2 p-2">
+                        <FiHeart size={20} />
+                        <span className="absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 text-xs font-bold text-red-600 bg-white rounded-full">{wishlist.length}</span>
+                    </div>
                 </div>
             </div>
 

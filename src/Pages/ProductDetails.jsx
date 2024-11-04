@@ -20,6 +20,7 @@ const ProductDetails = () => {
 
     const handleMarkAsRead = (id) => {
 
+
         addToStoredReadList(id)
 
 
@@ -29,6 +30,9 @@ const ProductDetails = () => {
         addToStoredWishList(id)
 
     }
+
+    //Shop count 
+
 
 
     return (
