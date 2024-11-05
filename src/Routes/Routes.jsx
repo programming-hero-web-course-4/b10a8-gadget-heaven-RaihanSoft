@@ -4,10 +4,10 @@ import Home from "../Pages/Home";
 import Statistics from "../Pages/Statistics";
 import Dashboard from "../Pages/Dashboard";
 import AllProducts from "../Components/AllProducts";
-import Unique from "../Pages/Unique";
 import ProductDetails from "../Pages/ProductDetails";
 import Cart from "../Components/Cart";
 import Wishlist from "../Components/Wishlist";
+import ContactUs from "../Pages/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -56,8 +56,8 @@ const router = createBrowserRouter([
 
 
             {
-                path: "/unique",
-                element: <Unique />
+                path: "/contactus",
+                element: <ContactUs />
             },
             {
                 path: "/details/:id",
