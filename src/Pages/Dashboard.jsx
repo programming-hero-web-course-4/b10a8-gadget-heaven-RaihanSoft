@@ -6,7 +6,7 @@ const Dashboard = () => {
   const allProducts = useLoaderData();
   const [carts, setCarts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  const [totalCost, setTotalCost] = useState(0); // New state for total cost
+  const [totalCost, setTotalCost] = useState(0); 
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,25 +29,34 @@ const Dashboard = () => {
     loadCartAndWishlist();
   }, [allProducts]);
 
-  const handleAddToCart = (product) => {
-    setCarts(prevCarts => [...prevCarts, product]);
-    setTotalCost(prevTotal => prevTotal + product.price); // Update total cost
-  };
-
   const handleRemoveFromCart = (id) => {
-    setCarts(prevCarts => prevCarts.filter(item => item.id !== id));
-    const removedProduct = carts.find(item => item.id === id);
-    if (removedProduct) {
-      setTotalCost(prevTotal => prevTotal - removedProduct.price); // Adjust total cost
-    }
+    setCarts(prevCarts => {
+      const updatedCarts = prevCarts.filter(item => item.id !== id);
+      const removedProduct = prevCarts.find(item => item.id === id);
+      if (removedProduct) {
+        // Adjust total cost
+        setTotalCost(prevTotal => prevTotal - removedProduct.price);
+      }
+      // Dispatch event to update navbar
+      window.dispatchEvent(new Event('cartCountUpdate'));
+      return updatedCarts;
+    });
     removeFromStoredReadList(id);
   };
 
   const handleRemoveFromWishlist = (id) => {
-    setWishlist(prevWishlist => prevWishlist.filter(item => item.id !== id));
+    setWishlist(prevWishlist => {
+      // Dispatch event to update navbar
+      window.dispatchEvent(new Event('wishlistCountUpdate'));
+      return prevWishlist.filter(item => item.id !== id);
+    });
     removeFromStoredWishList(id);
   };
-  
+
+  // Function to update total cost
+  const updateTotalCost = (newTotalCost) => {
+    setTotalCost(newTotalCost);
+  };
 
   useEffect(() => {
     if (location.pathname === '/dashboard') {
@@ -74,8 +83,14 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <Outlet context={{ carts, wishlist, handleAddToCart, handleRemoveFromCart, handleRemoveFromWishlist, totalCost }} />
-      
+      <Outlet context={{ 
+        carts, 
+        wishlist, 
+        handleRemoveFromCart, 
+        handleRemoveFromWishlist, 
+        totalCost, 
+        updateTotalCost // pass this function down
+      }} />
     </>
   );
 };

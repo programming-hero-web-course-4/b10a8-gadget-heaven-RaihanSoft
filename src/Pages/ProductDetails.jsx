@@ -1,31 +1,41 @@
 import { useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { useLoaderData, useParams, useOutletContext } from "react-router-dom";
-import { addToStoredReadList, addToStoredWishList } from "../Components/Util/Util";
+import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList, addToStoredWishList, getStoredReadList, getStoredWishList } from "../Components/Util/Util";
 
 const ProductDetails = () => {
     const datas = useLoaderData();
     const { id } = useParams();
-    const { incrementCartCount, incrementWishlistCount, handleAddToCart } = useOutletContext();
-
     const [product, setProduct] = useState({});
+    const [isInCart, setIsInCart] = useState(false);
+    const [isInWishlist, setIsInWishlist] = useState(false);
     const { product_image, product_title, price, description, specification, rating } = product;
 
     useEffect(() => {
         const singleData = datas.find(data => data.id === parseInt(id));
-        setProduct(singleData);
+        if (singleData) {
+            setProduct(singleData);
+
+            const storedCartList = getStoredReadList();
+            const storedWishlist = getStoredWishList();
+            setIsInCart(storedCartList.includes(id));
+            setIsInWishlist(storedWishlist.includes(id));
+        } else {
+            console.error('Product not found');
+        }
     }, [datas, id]);
 
     const handleAddToCartClick = () => {
         addToStoredReadList(id);
-        incrementCartCount();
-        handleAddToCart(product); // Add product to cart and update total cost
+        setIsInCart(true);
+        window.dispatchEvent(new Event('cartCountUpdate'));
     };
 
     const handleAddToWishlist = () => {
         addToStoredWishList(id);
-        incrementWishlistCount();
+        setIsInWishlist(true);
+        window.dispatchEvent(new Event('wishlistCountUpdate'));
     };
 
     return (
@@ -36,7 +46,7 @@ const ProductDetails = () => {
             </div>
             <div className="hero bg-base-200 min-h-[400px] -mt-40 w-8/12 mx-auto mb-10 rounded-xl">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img src={product_image} className="max-w-lg h-full w-full rounded-lg shadow-2xl" />
+                    <img src={product_image} className="max-w-lg h-full w-full rounded-lg shadow-2xl" alt={product_title} />
                     <div>
                         <h1 className="text-4xl font-bold">{product_title}</h1>
                         <p className="mt-5">Price: {price}</p>
@@ -48,8 +58,22 @@ const ProductDetails = () => {
                         <h2>Rating ⭐ </h2>
                         <p>{rating}</p>
                         <div className="flex items-center gap-5">
-                            <button onClick={handleAddToCartClick} className="btn btn-primary">Add To Cart <MdOutlineShoppingCart size={20} /></button>
-                            <button onClick={handleAddToWishlist} className="btn btn-primary">Add To Wishlist <FiHeart size={20} /></button>
+                            <button 
+                                onClick={handleAddToCartClick} 
+                                className="btn btn-primary"
+                                disabled={isInCart} 
+                            >
+                                {isInCart ? "Added to Cart" : "Add To Cart"} 
+                                <MdOutlineShoppingCart size={20} />
+                            </button>
+                            <button 
+                                onClick={handleAddToWishlist} 
+                                className="btn btn-primary"
+                                disabled={isInWishlist}
+                            >
+                                {isInWishlist ? "Added to Wishlist" : "Add To Wishlist"} 
+                                <FiHeart size={20} />
+                            </button>
                         </div>
                     </div>
                 </div>
