@@ -26,6 +26,7 @@ const Wishlist = () => {
       ) : (
         <p>No items in the wishlist.</p>
       )}
+      
     </div>
   );
 };

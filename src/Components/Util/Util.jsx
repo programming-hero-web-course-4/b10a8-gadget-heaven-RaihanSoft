@@ -22,7 +22,6 @@ export const addToStoredReadList = (id) => {
     } else {
         toast.error(`Already exists in the Cart list!`, { position: "top-center" })
     }
-
 }
 
 // Wishlist Functions (using "wish-list" key)
@@ -42,18 +41,16 @@ export const addToStoredWishList = (id) => {
         storedWishList.push(id);
         localStorage.setItem('wish-list', JSON.stringify(storedWishList));
         toast.success('This item is added to your Wish list.', { position: "top-center" });
-        return []
     } else {
         toast.error(`Already exists in the Wish list!`, { position: "top-center" })
     }
 }
 
-
 export const removeFromStoredReadList = (id) => {
     const storedList = getStoredReadList();
     const updatedList = storedList.filter(itemId => itemId !== id);
     localStorage.setItem('read-list', JSON.stringify(updatedList));
-    toast.warn('Removed from your cartlist.');
+    toast.warn('Removed from your cart list.');
 }
 
 export const removeFromStoredWishList = (id) => {
@@ -62,7 +59,3 @@ export const removeFromStoredWishList = (id) => {
     localStorage.setItem('wish-list', JSON.stringify(updatedWishList));
     toast.warn('Removed from your wishlist.');
 }
-
-
-
-

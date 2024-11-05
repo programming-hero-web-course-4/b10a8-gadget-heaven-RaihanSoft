@@ -47,6 +47,7 @@ const Dashboard = () => {
     setWishlist(prevWishlist => prevWishlist.filter(item => item.id !== id));
     removeFromStoredWishList(id);
   };
+  
 
   useEffect(() => {
     if (location.pathname === '/dashboard') {
@@ -74,6 +75,7 @@ const Dashboard = () => {
       </div>
 
       <Outlet context={{ carts, wishlist, handleAddToCart, handleRemoveFromCart, handleRemoveFromWishlist, totalCost }} />
+      
     </>
   );
 };

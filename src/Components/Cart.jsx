@@ -1,10 +1,12 @@
 import { RxCross2 } from "react-icons/rx";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Cart = () => {
-  const { carts, handleRemoveFromCart, totalCost } = useOutletContext();
+  const { carts, handleRemoveFromCart, totalCost, setCarts, setTotalCost } = useOutletContext();
   const [sortedCarts, setSortedCarts] = useState(carts);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const navigate = useNavigate(); // useNavigate hook for navigation
 
   // Sync sortedCarts with carts whenever carts changes
   useEffect(() => {
@@ -23,6 +25,26 @@ const Cart = () => {
     setSortedCarts((prevSorted) => prevSorted.filter(item => item.id !== id));
   };
 
+  // Function to handle the purchase button click
+  const handlePurchaseClick = () => {
+    setIsModalOpen(true); // Show the modal
+  };
+
+  // Function to confirm purchase and clear the cart
+  const confirmPurchase = () => {
+    // Clear the cart and reset the total cost
+    setCarts([]);
+    setTotalCost(0);
+  };
+
+  // Function to close the modal and navigate to the home page
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+    navigate('/'); // Redirect to the home page
+  };
+
+  
+
   return (
     <div className="w-11/12 mx-auto mt-6">
       <div className="flex justify-between items-center">
@@ -32,7 +54,13 @@ const Cart = () => {
         <div className="flex items-center gap-6">
           <p className="text-2xl font-bold">Total cost: <span className="text-xl">${totalCost.toFixed(2)}</span></p>
           <button className="btn" onClick={sortByPriceDescending}>Sort by Price</button>
-          <button className="btn">Purchase</button>
+          <button 
+            className="btn" 
+            onClick={handlePurchaseClick} 
+            disabled={carts.length === 0 || totalCost === 0}
+          >
+            Purchase
+          </button>
         </div>
       </div>
 
@@ -54,6 +82,25 @@ const Cart = () => {
         ))
       ) : (
         <p>No items in the cart.</p>
+      )}
+
+      {/* Modal for Purchase Confirmation */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+            <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
+            <p>Your purchase was successful!</p>
+            <div className="mt-6 flex justify-center gap-4">
+              <button 
+                onClick={() => { confirmPurchase(); closeModal(); }} 
+                className="btn btn-primary"
+              >
+                Confirm Purchase
+              </button>
+              <button onClick={closeModal} className="btn btn-secondary">Close</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
