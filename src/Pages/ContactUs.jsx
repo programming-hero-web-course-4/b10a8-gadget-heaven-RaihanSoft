@@ -1,8 +1,9 @@
 const ContactUs = () => {
+
   return (
     <>
       <div className="text-center py-10 bg-prime">
-        <h1 className="text-5xl font-bold text-white ">Statistics</h1>
+        <h1 className="text-5xl font-bold text-white ">Contact Us</h1>
         <p className="text-white mt-3 xl:w-6/12 mx-auto ">
           Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!
         </p>
@@ -61,7 +62,7 @@ const ContactUs = () => {
               <input type="text" placeholder="Company" className="input input-bordered w-full" />
             </div>
             <textarea placeholder="Your Message" className="textarea textarea-bordered w-full" rows="4"></textarea>
-            <button type="submit" className="btn btn-primary w-full md:w-auto">Ask a Question</button>
+            <button type="submit" className="btn rounded-full border-prime border-2 text-prime hover:bg-prime  hover:text-white font-bold w-full md:w-auto">Ask a Question</button>
           </form>
         </div>
       </div>

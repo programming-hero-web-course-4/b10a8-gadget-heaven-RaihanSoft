@@ -3,6 +3,8 @@ import { NavLink, Outlet, useLoaderData, useNavigate, useLocation } from "react-
 import { getStoredReadList, getStoredWishList, removeFromStoredReadList, removeFromStoredWishList } from "../Components/Util/Util";
 
 const Dashboard = () => {
+
+
   const allProducts = useLoaderData();
   const [carts, setCarts] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -11,22 +13,25 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const refreshCartData = () => {
+    const storedCartList = getStoredReadList().map(id => parseInt(id, 10));
+    const cartList = allProducts.filter(product => storedCartList.includes(product.id));
+    setCarts(cartList);
+
+    const initialTotalCost = cartList.reduce((acc, product) => acc + product.price, 0);
+    setTotalCost(initialTotalCost);
+  };
+
+  // Function to refresh the wishlist data from local storage
+  const refreshWishlistData = () => {
+    const storedWishlist = getStoredWishList().map(id => parseInt(id, 10));
+    const wishlistItems = allProducts.filter(product => storedWishlist.includes(product.id));
+    setWishlist(wishlistItems);
+  };
+
   useEffect(() => {
-    const loadCartAndWishlist = () => {
-      const storedCartList = getStoredReadList().map(id => parseInt(id, 10));
-      const cartList = allProducts.filter(product => storedCartList.includes(product.id));
-      setCarts(cartList);
-
-      // Calculate initial total cost
-      const initialTotalCost = cartList.reduce((acc, product) => acc + product.price, 0);
-      setTotalCost(initialTotalCost);
-
-      const storedWishlist = getStoredWishList().map(id => parseInt(id, 10));
-      const wishlistItems = allProducts.filter(product => storedWishlist.includes(product.id));
-      setWishlist(wishlistItems);
-    };
-
-    loadCartAndWishlist();
+    refreshCartData();
+    refreshWishlistData();
   }, [allProducts]);
 
   const handleRemoveFromCart = (id) => {
@@ -34,10 +39,8 @@ const Dashboard = () => {
       const updatedCarts = prevCarts.filter(item => item.id !== id);
       const removedProduct = prevCarts.find(item => item.id === id);
       if (removedProduct) {
-        // Adjust total cost
         setTotalCost(prevTotal => prevTotal - removedProduct.price);
       }
-      // Dispatch event to update navbar
       window.dispatchEvent(new Event('cartCountUpdate'));
       return updatedCarts;
     });
@@ -46,14 +49,13 @@ const Dashboard = () => {
 
   const handleRemoveFromWishlist = (id) => {
     setWishlist(prevWishlist => {
-      // Dispatch event to update navbar
       window.dispatchEvent(new Event('wishlistCountUpdate'));
       return prevWishlist.filter(item => item.id !== id);
     });
     removeFromStoredWishList(id);
+    refreshWishlistData(); // Refresh the wishlist data to sync with local storage
   };
 
-  // Function to update total cost
   const updateTotalCost = (newTotalCost) => {
     setTotalCost(newTotalCost);
   };
@@ -68,11 +70,6 @@ const Dashboard = () => {
     <>
       <div className="text-center py-10 bg-prime">
         <h1 className="text-5xl font-bold text-white">Dashboard</h1>
-        <p className="text-white mt-3">
-          Explore the latest gadgets that will take your experience to <br />
-          the next level. From smart devices to the coolest accessories, we have it all!
-        </p>
-
         <div className="my-4 w-full flex flex-col md:flex-row items-center justify-center gap-3">
           <NavLink to="cart" className={({ isActive }) => isActive ? 'btn rounded-full border-2 px-8 py-2 text-prime font-bold' : 'border-2 font-bold text-white rounded-full px-8 py-2'}>
             Cart
@@ -89,7 +86,9 @@ const Dashboard = () => {
         handleRemoveFromCart, 
         handleRemoveFromWishlist, 
         totalCost, 
-        updateTotalCost // pass this function down
+        updateTotalCost,
+        refreshCartData,
+        refreshWishlistData // Pass the refresh function to Wishlist component
       }} />
     </>
   );

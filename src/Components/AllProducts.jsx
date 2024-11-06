@@ -34,7 +34,7 @@ const AllProducts = () => {
                 {product.map((data) => <Gadgets data={data} key={data.id} />)}
             </div>
 
-            <button onClick={() => product.length < 6 ? setProduct(product) : setProduct(datas)} className="btn mt-5 bg-error text-white">View All</button>
+            <button onClick={() => product.length < 6 ? setProduct(product) : setProduct(datas)}  className="btn px-8 mt-8 text-black  border-2 font-bold hover:bg-prime hover:text-white border-prime rounded-full  " >View All</button>
         </>
     )
 }

@@ -18,7 +18,7 @@ const Gadgets = ({ data }) => {
                 <h2 className="card-title font-bold ">{product_title}</h2>
                 <p className="font-medium" ><span>Price:</span> $ {price} </p>
                 <div className="card-actions">
-                    <Link to={`/details/${id}`}>  <button className="btn text-prime border-2 font-medium hover:bg-prime hover:text-white border-prime rounded-full  ">View Details</button></Link>
+                    <Link to={`/details/${id}`}>  <button className="btn  text-prime border-2 font-medium hover:bg-prime hover:text-white border-prime rounded-full  ">View Details</button></Link>
                 </div>
             </div>
         </div>

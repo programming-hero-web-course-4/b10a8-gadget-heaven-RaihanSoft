@@ -1,16 +1,15 @@
 import { RxCross2 } from "react-icons/rx";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { removeFromStoredReadList } from "./Util/Util";
-import { clearLocalStorage } from "./Util/Util"; // Import the clearLocalStorage function
+import { removeFromStoredReadList, clearLocalStorage } from "./Util/Util";
 
 const Cart = () => {
-  const { carts, totalCost, updateTotalCost } = useOutletContext();
-  const [sortedCarts, setSortedCarts] = useState(carts);
+  const { carts, totalCost, updateTotalCost, refreshCartData } = useOutletContext();
+  const [sortedCarts, setSortedCarts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Update sortedCarts whenever carts changes
+  // Load cart data from context on component mount
   useEffect(() => {
     setSortedCarts(carts);
   }, [carts]);
@@ -21,32 +20,28 @@ const Cart = () => {
     setSortedCarts(sorted);
   };
 
-  // Show purchase confirmation modal
-  const handlePurchaseClick = () => {
-    setIsModalOpen(true);
-  };
-
-  // Confirm purchase and clear the cart
-
-
-  // Close the modal without making a purchase
-  const closeModal = () => {
-    clearLocalStorage(); // Clear local storage when closing the modal
-    setIsModalOpen(false);
-    navigate('/'); // Redirect to the home page when closing the modal
-  };
-
+  // Handle item removal and update total cost
   const handleRemoveAndUpdate = (id) => {
     const removedItem = sortedCarts.find(item => item.id === id);
     if (removedItem) {
-      const updatedTotalCost = totalCost - removedItem.price; // Calculate new total cost
-      updateTotalCost(updatedTotalCost); // Update total cost in the Dashboard
+      const updatedTotalCost = totalCost - removedItem.price;
+      updateTotalCost(updatedTotalCost);
     }
-    removeFromStoredReadList(id);
-    setSortedCarts((prevSorted) => prevSorted.filter(item => item.id !== id));
 
-    // Dispatch event to update navbar count
+    removeFromStoredReadList(id); // Remove from local storage
+    setSortedCarts(prev => prev.filter(item => item.id !== id)); // Remove from local state
+
+    // Refresh data in parent and update the navbar count
+    refreshCartData();
     window.dispatchEvent(new Event('cartCountUpdate'));
+  };
+
+  // Close the modal and clear the cart
+  const closeModal = () => {
+    clearLocalStorage();
+    setIsModalOpen(false);
+    navigate('/');
+    refreshCartData();
   };
 
   return (
@@ -58,15 +53,15 @@ const Cart = () => {
           <button className="btn" onClick={sortByPriceDescending}>Sort by Price</button>
           <button
             className="btn"
-            onClick={handlePurchaseClick}
-            disabled={carts.length === 0 || totalCost === 0} // Disable button if cart is empty or total cost is 0
+            onClick={() => setIsModalOpen(true)}
+            disabled={!sortedCarts.length}
           >
             Purchase
           </button>
         </div>
       </div>
 
-      {sortedCarts.length > 0 ? (
+      {sortedCarts.length ? (
         sortedCarts.map(item => (
           <div key={item.id} className="grid rounded-xl shadow-md border-2 justify-items-center sm:flex p-5 m-5 gap-4 relative">
             <div className="md:h-32 h-40 sm:w-52 w-full">
@@ -86,15 +81,15 @@ const Cart = () => {
         <p>No items in the cart.</p>
       )}
 
-      {/* Modal for Purchase Confirmation */}
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-            <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
-            <p>Your purchase was successful! The total amount is:</p>
-            <p className="text-xl font-semibold mt-4">${totalCost.toFixed(2)}</p> {/* Display total cost */}
-            <div className="mt-6 flex justify-center gap-4">
-              <button onClick={closeModal} className="btn btn-secondary">Close</button>
+        <div>
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+        <div className="flex items-center justify-center "><img className="h-20 mb-5" src="/public/Group.png" alt="" /></div>
+              <h2 className="text-2xl font-bold mb-4">Payment Successfully</h2>
+              <p>Your purchase was successful!</p>
+              <p className="text-xl font-semibold mt-4">Total : ${totalCost.toFixed(2)}</p>
+              <button onClick={closeModal} className="btn border-prime border-2 text-prime hover:bg-prime hover:text-white font-bold w-full rounded-full mt-4">Close</button>
             </div>
           </div>
         </div>

@@ -31,7 +31,7 @@ export const addToStoredReadList = (id) => {
 export const clearLocalStorage = () => {
     localStorage.removeItem('read-list');
     localStorage.removeItem('wish-list');
-    toast.info('Your cart and wishlist have been cleared.', { position: "top-center" });
+    toast.success('Payment Successfully', { position: "top-center" });
     window.dispatchEvent(new Event('cartCountUpdate')); // Update cart count
     window.dispatchEvent(new Event('wishlistCountUpdate')); // Update wishlist count
   };
