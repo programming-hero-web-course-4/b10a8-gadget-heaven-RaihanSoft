@@ -4,7 +4,7 @@
     "product_title": "Apple iPhone 15 Pro Max",
     "product_image": "https://www.zdnet.com/a/img/resize/7c135e7748ad80aa72743c58c1d067ba1a0fddcf/2023/10/06/4e7663f4-fe43-424e-8fde-64a5612cdfd7/img-1950.jpg?auto=webp&width=1280",
     "category": "iPhone",
-    "price": 1299,
+    "price": 100,
     "description": "Experience the ultimate smartphone with the iPhone 15 Pro Max.",
     "specification": [
       "6.7-inch Super Retina XDR display",
@@ -21,7 +21,7 @@
     "product_title": "Samsung Galaxy S23 Ultra",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRYUBSMDJHql4ormT2XkebhgtzDfwxVXuLTw&s",
     "category": "Phones",
-    "price": 1199,
+    "price": 150,
     "description": "A powerful smartphone with advanced features and stunning display.",
     "specification": [
       "6.8-inch Dynamic AMOLED 2X display",
@@ -37,7 +37,7 @@
     "product_title": "Apple MacBook Air M2",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1xdclQ2hq1gGxlY1bXNL1-KdXDLF30IaBAQ&s",
     "category": "MacBook",
-    "price": 1199,
+    "price": 500,
     "description": "Lightweight and powerful laptop with Apple's M2 chip.",
     "specification": [
       "13.6-inch Retina display",
@@ -53,7 +53,7 @@
     "product_title": "Apple Watch Series 9",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRb2GA8FpTLt_KrfUm77RpYuU7DWLa476tYg&s",
     "category": "Smart Watches",
-    "price": 399,
+    "price": 50,
     "description": "Latest Apple Watch with health monitoring and emergency SOS features.",
     "specification": [
       "1.9-inch LTPO OLED display",
@@ -70,7 +70,7 @@
     "product_title": "Sony Xperia 1 V",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5r7rpKmGAakPPk_f8Hk3fSOTXgLhsSLo7Rw&s",
     "category": "Phones",
-    "price": 1099,
+    "price": 300,
     "description": "Sony's premium smartphone with advanced video recording features.",
     "specification": [
       "6.5-inch 4K HDR OLED display",
@@ -87,7 +87,7 @@
     "product_title": "Google Pixel 8 Pro",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqdRGOfnNFBSiW5nEYeY3a-4NL0ZX48-6lSA&s",
     "category": "Phones",
-    "price": 999,
+    "price": 500,
     "description": "Google's latest phone with AI-powered features and excellent camera.",
     "specification": [
       "6.7-inch OLED display",
@@ -104,7 +104,7 @@
     "product_title": "Dell XPS 13",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe8WUsYPhlM1Dg8l9fAEwYbV9oJtXHGWAhyA&s",
     "category": "Laptops",
-    "price": 999,
+    "price": 350,
     "description": "Compact and efficient laptop with InfinityEdge display.",
     "specification": [
       "13.4-inch FHD+ display",
@@ -120,7 +120,7 @@
     "product_title": "Samsung Galaxy Watch 6",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkd6xEks0drohOm0KK32_Vbfl1sq-EfPez5w&s",
     "category": "Smart Watches",
-    "price": 299,
+    "price": 60,
     "description": "Advanced smartwatch with health tracking and AMOLED display.",
     "specification": [
       "1.4-inch AMOLED display",
@@ -152,7 +152,7 @@
     "product_title": "Apple AirPods Pro 2",
     "product_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmc8t2sgHQ5zafmzruHEJX0rM21HZS7G0N2Q&s",
     "category": "Accessories",
-    "price": 249,
+    "price": 240,
     "description": "Noise-canceling wireless earbuds with spatial audio.",
     "specification": [
       "Active Noise Cancellation",
