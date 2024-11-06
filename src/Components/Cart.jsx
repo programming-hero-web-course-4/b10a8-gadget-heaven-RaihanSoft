@@ -85,7 +85,7 @@ const Cart = () => {
         <div>
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-        <div className="flex items-center justify-center "><img className="h-20 mb-5" src="/public/Group.png" alt="" /></div>
+        <div className="flex items-center justify-center "><img className="h-20 mb-5" src="/Group.png" alt="" /></div>
               <h2 className="text-2xl font-bold mb-4">Payment Successfully</h2>
               <p>Your purchase was successful!</p>
               <p className="text-xl font-semibold mt-4">Total : ${totalCost.toFixed(2)}</p>
