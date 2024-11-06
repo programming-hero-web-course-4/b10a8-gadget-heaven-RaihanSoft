@@ -8,7 +8,7 @@ Welcome to **Gadget Heaven**, a responsive platform for gadget enthusiasts! Gadg
 [**Gadget Heaven Live Site**](https://gadgets_heaven.surge.sh/)
 
 ### 📄 Requirement Document
-[**Project Requirements**](Batch-10_Assignment-08)
+[**Project Requirements**](./public/Batch-10_Assignment-08_combined.png)
 
 ---
 
